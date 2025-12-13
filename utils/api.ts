@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://10.241.143.220:5000/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 // Add JWT token to headers if stored
