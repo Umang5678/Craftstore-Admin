@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import API from "../../utils/api";
+import API from "../../../utils/api";
 
 interface Order {
   _id: string;
@@ -120,10 +120,10 @@ export default function OrdersPage() {
                       o.status === "Delivered"
                         ? "bg-green-100 text-green-700"
                         : o.status === "Processing"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : o.status === "Shipped"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-gray-200 text-gray-700"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : o.status === "Shipped"
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-gray-200 text-gray-700"
                     }`}
                   >
                     {o.status}

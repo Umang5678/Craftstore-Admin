@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import API from "../../utils/api";
-import { setToken } from "../../utils/auth";
+import API from "../../../utils/api";
+import { setToken } from "../../../utils/auth";
 
 export default function LoginPage() {
   const router = useRouter();

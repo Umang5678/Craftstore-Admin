@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 interface ProductFormProps {
   initialData?: any;
   onSubmit: (data: any) => void;
+  loading?: boolean;
 }
 
 const categories = [
@@ -26,6 +27,7 @@ const categories = [
 export default function ProductForm({
   initialData,
   onSubmit,
+  loading = false,
 }: ProductFormProps) {
   const [form, setForm] = useState({
     name: "",
@@ -49,7 +51,7 @@ export default function ProductForm({
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -71,7 +73,7 @@ export default function ProductForm({
         {
           method: "POST",
           body: data,
-        }
+        },
       );
 
       const uploaded = await res.json();
@@ -93,7 +95,7 @@ export default function ProductForm({
       ...form,
       category: form.category.trim(), // remove extra spaces
     };
-    onSubmit(form);
+    onSubmit(cleanedData);
   };
 
   return (
@@ -217,16 +219,26 @@ export default function ProductForm({
 
       <button
         type="submit"
-        disabled={uploading}
-        className={`w-full py-2 ${
-          uploading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"
-        } text-white font-semibold rounded-md shadow transition-colors`}
+        disabled={uploading || loading}
+        className={`w-full py-2 flex items-center justify-center gap-2 
+    ${
+      uploading || loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"
+    } 
+    text-white font-semibold rounded-md shadow transition-colors`}
       >
+        {(uploading || loading) && (
+          <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+        )}
+
         {uploading
           ? "Uploading..."
-          : initialData
-          ? "Update Product"
-          : "Add Product"}
+          : loading
+            ? initialData
+              ? "Updating..."
+              : "Adding..."
+            : initialData
+              ? "Update Product"
+              : "Add Product"}
       </button>
     </form>
   );

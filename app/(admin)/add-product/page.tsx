@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
-import API from "../../utils/api";
-import ProductForm from "../../components/ProductForm";
+import API from "../../../utils/api";
+import ProductForm from "../../../components/ProductForm";
 
 export default function AddProductPage() {
   const router = useRouter();
