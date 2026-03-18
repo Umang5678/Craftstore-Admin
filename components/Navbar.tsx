@@ -148,6 +148,13 @@ export default function Navbar() {
           >
             Orders
           </Link>
+
+          <Link
+            href="/add-blog"
+            className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 transition"
+          >
+            Blog
+          </Link>
         </div>
 
         {/* Logout Button (always visible) */}
@@ -191,6 +198,13 @@ export default function Navbar() {
               className="text-gray-700 dark:text-gray-200 hover:text-indigo-600"
             >
               Orders
+            </Link>
+            <Link
+              href="/add-blog"
+              onClick={() => setMenuOpen(false)}
+              className="text-gray-700 dark:text-gray-200 hover:text-indigo-600"
+            >
+              Blog
             </Link>
           </div>
         </div>
